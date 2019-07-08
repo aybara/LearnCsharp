@@ -47,7 +47,7 @@
     <Compile Include="Cache\MemoryFileCache.cs" />
     <Compile Include="Cache\StockCache.cs" />
     <Compile Include="Cache\StockItem.cs" />
-    <Compile Include="Math\Matrizes.cs" />
+    <Compile Include="Math\Matriz.cs" />
     <Compile Include="Math\MMQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
