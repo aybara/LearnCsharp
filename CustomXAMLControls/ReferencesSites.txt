@@ -1,0 +1,2 @@
+﻿Custom XAML Controls - Microsoft Magazine May 2019
+https://msdn.microsoft.com/en-us/magazine/mt833441
