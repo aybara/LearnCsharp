@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using Libraries.Cache;
+using Libraries.Math;
 
 namespace Libraries
 {
@@ -15,10 +16,9 @@ namespace Libraries
     {
         static void Main(string[] args)
         {
-            using (MemoryFileCache cache = new MemoryFileCache("ola.txt"))
-            {
-                cache["Leandro2"] = "Ola";
-            }
+            Matriz a = new Matriz(1, 1);
+            Matriz b = new Matriz(1, 1);
+            Matriz c = a + b;
         }
     }
 }
