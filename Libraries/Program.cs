@@ -16,9 +16,19 @@ namespace Libraries
     {
         static void Main(string[] args)
         {
-            Matriz a = new Matriz(1, 1);
-            Matriz b = new Matriz(1, 1);
-            Matriz c = a + b;
+            int soma = 0;
+            Teste((i, j) => soma += i + j);
+        }
+
+        public static void Teste(Action<int,int> action)
+        {
+            int k = 0;
+            int i = 0, j = 0;
+            while (k < 10)
+            {
+                action(i, j);
+                k++; i++; j++;
+            }
         }
     }
 }

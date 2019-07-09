@@ -7,123 +7,231 @@ using static System.Math;
 
 namespace Libraries.Math
 {
+    /// <summary>
+    /// Define uma matriz e suas operações.
+    /// </summary>
     public class Matriz
     {
-        public Matriz() { }
-        public Matriz(int linhas, int colunas)
+        private double[,] _elementos;
+        private int _linhas;
+        private int _colunas;
+        public Matriz()
+        {
+        }
+        public Matriz(int linhas, int colunas) : this()
         {
             _linhas = linhas;
             _colunas = colunas;
             this._elementos = new double[linhas, colunas];
         }
-        private double[,] _elementos;
         public double this[int i, int j]
         {
             get { return this._elementos[i, j]; }
             set { this._elementos[i, j] = value; }
         }
-        private int _linhas;
         public int Linhas
         {
             get { return _linhas; }
             set
             {
                 _linhas = value;
-                if (_elementos == null && _linhas > 0 && _colunas > 0 )
+                if (_linhas > 0 && _colunas > 0 )
                     this._elementos = new double[_linhas, _colunas];
             }
         }
-        private int _colunas;
         public int Colunas
         {
             get { return _colunas; }
             set
             {
                 _colunas = value;
-                if(_elementos == null && _linhas > 0 && _colunas > 0)
+                if(_linhas > 0 && _colunas > 0)
                     this._elementos = new double[_linhas, _colunas];
             }
         }
+        /// <summary>
+        /// Devolve o número máximo de elementos de uma matriz.
+        /// </summary>
         public int Count
         {
             get { return _linhas * _colunas; }
         }
+        /// <summary>
+        /// Devolve a matriz com cada elemento multiplicado por um escalar x.
+        /// </summary>
+        public Matriz MultiplicaEscalar(double x)
+        {
+            Matriz multiplicaEscalar = new Matriz(Linhas, Colunas);
+            InterarMatriz(this, (i, j) => multiplicaEscalar[i, j] = this[i, j] * x);
+            return multiplicaEscalar;
+        }
+        /// <summary>
+        /// Devolve a soma de duas matrizes, se possível.
+        /// </summary>
         public Matriz Soma(Matriz b)
         {
             Matriz matrizSoma = null;
             if(this.Linhas == b.Linhas && this.Colunas == b.Colunas)
             {
                 matrizSoma = new Matriz(Linhas, Colunas);
-                for(int i = 0; i < Linhas; i++)
-                    for(int j = 0; j < Colunas; j++)
-                        matrizSoma[i, j] = this[i, j] * b[i, j];
+                InterarMatriz(this, (i, j) => matrizSoma[i, j] = this[i, j] * b[i, j]);
             }
             return matrizSoma;
         }
-        public static Matriz operator +(Matriz a, Matriz b)
-        {
-            return a.Soma(b);
-        }
+        /// <summary>
+        /// Devolve a subtração de duas matrizes, se possível.
+        /// </summary>
         public Matriz Subtracao(Matriz b)
         {
             return Soma(b.Oposto());
+        }
+        /// <summary>
+        /// Devolve a multiplicação da matriz pela matriz b, se isso for possível.
+        /// </summary>
+        public Matriz Multiplicacao(Matriz b)
+        {
+            Matriz multiplicacao = null;
+            if(Colunas == b.Linhas)
+            {
+                multiplicacao = new Matriz(Linhas, b.Colunas);
+                InterarMatriz(this, (i, j) => multiplicacao[i, j] = this[i, j] * b[i, j]);
+            }
+            return multiplicacao;
+        }
+        /// <summary>
+        /// Devolve a matriz oposta. Todos os elementos multiplicados por -1.
+        /// </summary>
+        public Matriz Oposto()
+        {
+            return MultiplicaEscalar(-1);
+        }
+        /// <summary>
+        /// Devolve a Transposta da matriz.
+        /// </summary>
+        public Matriz Transposta()
+        {
+            Matriz transp = new Matriz(Colunas, Linhas);
+            InterarMatriz(this, (i, j) => transp[i, j] = this[j, i]);
+            return transp;
+        }
+        /// <summary>
+        /// Matriz obtida pela supressão da linha k e da coluna l.
+        /// </summary>
+        public Matriz Menor(int k, int l)
+        {
+            Matriz menor = null;
+            if (Linhas > 1 && Colunas > 1)
+            {
+                menor = new Matriz(Linhas - 1, Colunas - 1);
+                int i, j, p, q;
+                for (i = 0, p = 0; i < Linhas; i++)
+                    if(i != k)
+                    {
+                        for(j = 0, q = 0; j < Colunas; j++)
+                            if(j != l)
+                            {
+                                menor[p, q] = this[i, j];
+                                q++;
+                            }
+                        p++;
+                    }
+            }
+            return menor;
+        }
+        /// <summary>
+        /// Complemento algébrico, apenas para matrizes quadradas
+        /// </summary>
+        public double Cal(int k, int l)
+        {
+            return Pow(-1, k + l) * Menor(k, l).Determinante();
+        }
+        /// <summary>
+        /// Devolve a matriz de complementos algébricos, a matriz deve ser quadrada.
+        /// </summary>
+        public Matriz MatrizCal()
+        {
+            Matriz mCal = new Matriz(Linhas, Colunas);
+            InterarMatriz(this, (i, j) => mCal[i, j] = this.Cal(i, j));
+            return mCal;
+        }
+        /// <summary>
+        /// Caso a matriz seja quadrada, calcula seu determinante.
+        /// </summary>
+        public double Determinante()
+        {
+            double det = 0.0;
+            for (int j = 0; j < Colunas; j++)
+                det += this[0, j] * Cal(0, j);
+            return det;
+        }
+        /// <summary>
+        /// Devolve a Inversa da Matriz. A matriz deve ser quadrada.
+        /// </summary>
+        public Matriz Inversa()
+        {
+            double det = Determinante();
+            if(det != 0.0)
+                return MatrizCal().Transposta().MultiplicaEscalar(1.0 / det);
+            return null;
+        }
+        #region Operações de Matrizes
+        public static Matriz operator +(Matriz a, Matriz b)
+        {
+            return a.Soma(b);
         }
         public static Matriz operator -(Matriz a, Matriz b)
         {
             return a.Soma(b);
         }
-        public Matriz Oposto()
+        public static Matriz operator *(Matriz a, Matriz b)
         {
-            Matriz matrizOposto = new Matriz(Linhas, Colunas);
-            for (int i = 0; i < Linhas; i++)
-                for (int j = 0; j < Colunas; j++)
-                    matrizOposto[i, j] = (- 1) * this[i, j];
-
-            return matrizOposto;
+            return a.Multiplicacao(b);
         }
-        public Matriz Transposta()
+        public static bool operator ==(Matriz a, Matriz b)
         {
-            Matriz transp = new Matriz(Colunas, Linhas);
-            for (int i = 0; i < Linhas; i++)
-                for (int j = 0; j < Colunas; j++)
-                    transp[i, j] = this[j, i];
-
-            return transp;
+            return Comparison(a, b);
         }
-        public Matriz Menor(int k, int j)
+        public static bool operator !=(Matriz a, Matriz b)
         {
-            throw new NotImplementedException();
-            Matriz menor = null;
-            if (Linhas > 1 && Colunas > 1)
-            {
-                menor = new Matriz(Linhas - 1, Colunas - 1);
-            }
-            return menor;
+            return !Comparison(a, b);
         }
+        #endregion
         /// <summary>
-        /// Complemento algébrico
+        /// Verifica se a matriz é quadrada.
         /// </summary>
-        /// <returns></returns>
-        public double Cal(int k, int j)
+        public bool Quadradra()
         {
-            throw new NotImplementedException();
+            if (Linhas > 0 && Colunas > 0 && Linhas == Colunas)
+                return true;
+            return false;
         }
-        public Matriz MatrizCal()
+        private static bool Comparison(Matriz a, Matriz b)
         {
-            Matriz mCal = new Matriz(Linhas, Colunas);
-            for (int i = 0; i < Linhas; i++)
-                for (int j = 0; j < Colunas; j++)
-                    mCal[i, j] = this.Cal(i, j);
+            if (a.Linhas != b.Linhas || a.Colunas != b.Colunas)
+                return false;
+            else
+                for (int i = 0; i < a.Linhas; i++)
+                    for (int j = 0; j < a.Colunas; j++)
+                        if (a[i, j] != b[i, j])
+                            return false;
 
-            return mCal;
+            return true;
         }
-        public double Determinante()
+        public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj is Matriz)
+                return Comparison(this, (Matriz)obj);
+            return base.Equals(obj);
         }
-        public Matriz Inversa()
+        public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return base.GetHashCode();
+        }
+        private static void InterarMatriz(Matriz m, Action<int, int> action)
+        {
+            for (int i = 0; i < m.Linhas; i++)
+                for (int j = 0; j < m.Colunas; j++)
+                    action(i, j);
         }
     }
 }
