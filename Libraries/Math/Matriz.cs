@@ -24,10 +24,20 @@ namespace Libraries.Math
             _colunas = colunas;
             this._elementos = new double[linhas, colunas];
         }
+        /// <summary>
+        /// Retorna o elemento na posição dada.
+        /// </summary>
         public double this[int i, int j]
         {
             get { return this._elementos[i, j]; }
             set { this._elementos[i, j] = value; }
+        }
+        /// <summary>
+        /// Retorna a coluna como um array.
+        /// </summary>
+        public double[] this[int j]
+        {
+            get { return RetornaColuna(j); }
         }
         public int Linhas
         {
@@ -181,7 +191,7 @@ namespace Libraries.Math
         }
         public static Matriz operator -(Matriz a, Matriz b)
         {
-            return a.Soma(b);
+            return a.Subtracao(b);
         }
         public static Matriz operator *(Matriz a, Matriz b)
         {
@@ -232,6 +242,20 @@ namespace Libraries.Math
             for (int i = 0; i < m.Linhas; i++)
                 for (int j = 0; j < m.Colunas; j++)
                     action(i, j);
+        }
+        public double[] RetornaLinha(int i)
+        {
+            double[] linha = new double[this.Colunas];
+            for (int j = 0; j < this.Colunas; j++)
+                linha[j] = this[i, j];
+            return linha;
+        }
+        public double[] RetornaColuna(int j)
+        {
+            double[] coluna = new double[this.Linhas];
+            for (int i = 0; i < this.Linhas; i++)
+                coluna[i] = this[i, j];
+            return coluna;
         }
     }
 }

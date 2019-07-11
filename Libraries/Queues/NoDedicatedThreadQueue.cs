@@ -23,6 +23,31 @@ namespace Libraries.Queues
                 }
             }
         }
-        private void ProcessQueuedItems(ob)
+        private void ProcessQueuedItems(object ignored)
+        {
+            while (true)
+            {
+                object job;
+                lock (_jobs)
+                {
+                    if(_jobs.Count == 0)
+                    {
+                        _delegateQueuedOrRunning = false;
+                        break;
+                    }
+                    job = _jobs.Dequeue();
+                }
+
+                try
+                {
+                    Console.WriteLine(job);
+                }
+                catch
+                {
+                    ThreadPool.UnsafeQueueUserWorkItem(ProcessQueuedItems, null);
+                    throw;
+                }
+            }
+        }
     }
 }
