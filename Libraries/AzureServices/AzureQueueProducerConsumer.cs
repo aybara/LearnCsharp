@@ -11,7 +11,7 @@ namespace Libraries.AzureServices
     public class AzureQueueProducerConsumer<T> : IProducerConsumerCollection<T>
     {
         private CloudStorageAccount storageAccount = null;
-        private CloudQueue queue = null;
+        public CloudQueue queue = null;
         private string _storageConnectionString;
         private TimeSpan? _timeToMessageLive;
         private string _queueName;
