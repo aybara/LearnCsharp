@@ -9,7 +9,7 @@ using System.Collections;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 
-namespace Libraries.Queues
+namespace Libraries.AzureServices
 {
     public class AzureQueueProducerConsumer<T> : IProducerConsumerCollection<T>
     {

@@ -60,7 +60,7 @@
     <Compile Include="Math\MMQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queues\AzureQueueProducerConsumer.cs" />
+    <Compile Include="AzureServices\AzureQueueProducerConsumer.cs" />
     <Compile Include="Queues\BitBetterQueue.cs" />
     <Compile Include="Queues\BlockingCollectionQueue.cs" />
     <Compile Include="Queues\MultiThreadQueue.cs" />
