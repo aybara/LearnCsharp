@@ -12,6 +12,7 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Libraries.AzureServices;
+using Libraries.AzureServices.AzureTranslatorText;
 using Libraries.Cache;
 using Libraries.Queues;
 using Libraries.Math;

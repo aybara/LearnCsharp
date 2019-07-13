@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureServices\AzureKeyVaultHandler.cs" />
+    <Compile Include="AzureServices\AzureTranslatorText\AzureTranslatorTextHandler.cs" />
+    <Compile Include="AzureServices\AzureTranslatorText\TranslatorTextApiClasses.cs" />
     <Compile Include="Cache\MemoryFileCache.cs" />
     <Compile Include="Cache\StockCache.cs" />
     <Compile Include="Cache\StockItem.cs" />
