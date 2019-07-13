@@ -7,8 +7,12 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
 using Libraries.Cache;
 using Libraries.Math;
+using Libraries.Queues;
 
 namespace Libraries
 {
@@ -16,19 +20,6 @@ namespace Libraries
     {
         static void Main(string[] args)
         {
-            int soma = 0;
-            Teste((i, j) => soma += i + j);
-        }
-
-        public static void Teste(Action<int,int> action)
-        {
-            int k = 0;
-            int i = 0, j = 0;
-            while (k < 10)
-            {
-                action(i, j);
-                k++; i++; j++;
-            }
         }
     }
 }
