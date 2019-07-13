@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatterns", "DesignPatterns\DesignPatterns.csproj", "{59CC28E5-A27A-4E5D-82B0-587DE21A50BB}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomXAMLControls", "CustomXAMLControls\CustomXAMLControls.csproj", "{C9D5551C-117A-497D-9787-ACA0D774BB56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libraries", "Libraries\Libraries.csproj", "{08B09392-9B44-4EDC-9D94-6BE9219FC713}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacebookWebhook", "..\FacebookWebhook\FacebookWebhook\FacebookWebhook.csproj", "{0152C1F8-2A2C-4A28-AFD8-3A67A6D160E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{08B09392-9B44-4EDC-9D94-6BE9219FC713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B09392-9B44-4EDC-9D94-6BE9219FC713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08B09392-9B44-4EDC-9D94-6BE9219FC713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0152C1F8-2A2C-4A28-AFD8-3A67A6D160E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0152C1F8-2A2C-4A28-AFD8-3A67A6D160E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0152C1F8-2A2C-4A28-AFD8-3A67A6D160E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0152C1F8-2A2C-4A28-AFD8-3A67A6D160E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
