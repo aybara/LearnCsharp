@@ -39,7 +39,7 @@ namespace Libraries
             {
                 jsonDatas.Add(JsonConvert.DeserializeObject<JsonData>(message.AsString));
             }
-            jsonDatas.Where(data => data.Entry[0].Changed_Fields.Contains(""))
+            jsonDatas.Where(data => data.Entry[0].Changed_Fields.Contains(""));
         }
     }
     public class JsonData
