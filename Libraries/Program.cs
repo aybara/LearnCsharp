@@ -8,16 +8,16 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Configuration.ConfigurationBuilders;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
-using Libraries.AzureServices;
 using Libraries.AzureServices.AzureTranslatorText;
 using Libraries.Cache;
 using Libraries.Queues;
 using Libraries.Math;
 using Newtonsoft.Json;
+using MyClassLibrary;
+using MyClassLibrary.AzureServices;
 
 namespace Libraries
 {
@@ -32,8 +32,8 @@ namespace Libraries
 
             //string secret = azureKeyVault.GetSecretAsync("HelloWorld").GetAwaiter().GetResult();
 
-            var teste = ConfigurationManager.AppSettings.Get("secret1");
-            var teste2 = Environment.GetEnvironmentVariables();
+            AzureKeyVaultSecureSecrets keyVault = new AzureKeyVaultSecureSecrets();
+            string secret = keyVault.Get("HelloWorld");
         }
     }
     
