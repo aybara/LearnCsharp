@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
-using Libraries.AzureServices;
 using Libraries.AzureServices.AzureTranslatorText;
 using Libraries.Cache;
 using Libraries.Queues;
 using Libraries.Math;
 using Newtonsoft.Json;
 using MyClassLibrary;
+using MyClassLibrary.AzureServices;
 
 namespace Libraries
 {
@@ -31,8 +31,9 @@ namespace Libraries
             //    ConfigurationManager.AppSettings.Get("AzureKeyVaultUrl"));
 
             //string secret = azureKeyVault.GetSecretAsync("HelloWorld").GetAwaiter().GetResult();
-            
-            SecureKeys.SetSecret("secret3", "Leandro");
+
+            AzureKeyVaultSecureSecrets keyVault = new AzureKeyVaultSecureSecrets();
+            string secret = keyVault.Get("HelloWorld");
         }
     }
     
