@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Libraries.Math;
+using MyClassLibrary.Math;
 using static System.Math;
 
-namespace Libraries.Math
+namespace MyClassLibrary.Math
 {
     /// <summary>
     /// Método dos Mínimos Quadrados

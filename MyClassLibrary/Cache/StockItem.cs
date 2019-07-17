@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Caching;
 
-namespace Libraries.Cache
+namespace MyClassLibrary.Cache
 {
     [Serializable]
     public class StockItem

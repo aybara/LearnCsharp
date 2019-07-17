@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Libraries.AzureServices.AzureTranslatorText
+namespace MyClassLibrary.AzureServices.AzureTranslatorText
 {
     public partial class AzureTranslatorTextHandler
     {

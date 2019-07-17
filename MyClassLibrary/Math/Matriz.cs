@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Math;
 
-namespace Libraries.Math
+namespace MyClassLibrary.Math
 {
     /// <summary>
     /// Define uma matriz e suas operações.

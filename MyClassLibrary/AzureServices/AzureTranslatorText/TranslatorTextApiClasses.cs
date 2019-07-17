@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libraries.AzureServices.AzureTranslatorText
+namespace MyClassLibrary.AzureServices.AzureTranslatorText
 {
     /// <summary>
     /// The C# classes that represents the JSON returned by the Translator Text API.

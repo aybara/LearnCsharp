@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libraries.Cache
+namespace MyClassLibrary.Cache
 {
     public class MemoryFileCache : MemoryCache, IDisposable
     {

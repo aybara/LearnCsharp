@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Libraries.Queues
+namespace MyClassLibrary.Queues
 {
     public class BitBetterQueue
     {

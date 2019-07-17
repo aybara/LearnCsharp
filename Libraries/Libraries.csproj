@@ -86,21 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureServices\AzureKeyVaultHandler.cs" />
-    <Compile Include="AzureServices\AzureTranslatorText\AzureTranslatorTextHandler.cs" />
-    <Compile Include="AzureServices\AzureTranslatorText\TranslatorTextApiClasses.cs" />
-    <Compile Include="Cache\MemoryFileCache.cs" />
-    <Compile Include="Cache\StockCache.cs" />
-    <Compile Include="Cache\StockItem.cs" />
-    <Compile Include="Math\Matriz.cs" />
-    <Compile Include="Math\MMQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AzureServices\AzureQueueProducerConsumer.cs" />
-    <Compile Include="Queues\BitBetterQueue.cs" />
-    <Compile Include="Queues\BlockingCollectionQueue.cs" />
-    <Compile Include="Queues\MultiThreadQueue.cs" />
-    <Compile Include="Queues\NaiveQueue.cs" />
-    <Compile Include="Queues\NoDedicatedThreadQueue.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
