@@ -25,15 +25,8 @@ namespace Libraries
     {
         static void Main(string[] args)
         {
-            //AzureKeyVaultHandler azureKeyVault = new AzureKeyVaultHandler(
-            //    ConfigurationManager.AppSettings.Get("AzureKeyVaultClientId"),
-            //    ConfigurationManager.AppSettings.Get("AzureKeyVaultClientSecret"),
-            //    ConfigurationManager.AppSettings.Get("AzureKeyVaultUrl"));
-
-            //string secret = azureKeyVault.GetSecretAsync("HelloWorld").GetAwaiter().GetResult();
-
             AzureKeyVaultSecureSecrets keyVault = new AzureKeyVaultSecureSecrets();
-            string secret = keyVault.Get("HelloWorld");
+            string secret = keyVault["HelloWorld"];
         }
     }
     

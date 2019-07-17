@@ -19,6 +19,11 @@ namespace MyClassLibrary.AzureServices
             client = new SecretClient(keyVaultUri, new ClientSecretCredential(tenantId, clientId, clientSecret));
         }
 
+        public string this[string secretName]
+        {
+            get { return Get(secretName); }
+        }
+
         public async Task<string> GetAsync(string secretName)
         {
             Secret secret = await client?.GetAsync(secretName);
