@@ -13,7 +13,30 @@ namespace MyClassLibrary.AzureServices
 {
     public class AzureServices
     {
-        public QueueClient queue;
+        private QueueClient queue;
+        private SecretClient secret;
+
+        private string connectionStorageString;
         public AzureServices() { }
+
+        private async Task AzureQueueConnection(string queueName)
+        {
+            queue = new QueueClient(connectionStorageString, queueName);
+            await queue.CreateAsync();
+        }
+        private void AzureKeyVaultConnection(string clientId, string clientSecret, string tenantId, Uri keyVaultUri)
+        {
+            secret = new SecretClient(keyVaultUri, new ClientSecretCredential(tenantId, clientId, clientSecret));
+        }
+        
+        public string EnQueueMessage(string message, string queueName)
+        {
+            if (queue == null)
+            {
+                AzureKeyVaultConnection(SecureSecrets.GetSecret("AzureKeyVaultClientId"), SecureSecrets.GetSecret("AzureKeyVaultClientSecret"), SecureSecrets.GetSecret("AzureTranslatorTenantId"), new Uri(SecureSecrets.GetSecret("AzureKeyVaultUrl")));
+                AzureQueueConnection(queueName).GetAwaiter();
+            }
+            var enqueueMessage = queue.EnqueueMessage(message);
+        }
     }
 }
