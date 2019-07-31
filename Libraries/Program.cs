@@ -18,6 +18,7 @@ using MyClassLibrary.Math;
 using Newtonsoft.Json;
 using MyClassLibrary;
 using MyClassLibrary.AzureServices;
+using MyClassLibrary.Calendar;
 
 namespace Libraries
 {
@@ -25,8 +26,11 @@ namespace Libraries
     {
         static void Main(string[] args)
         {
-            AzureKeyVaultSecureSecrets keyVault = new AzureKeyVaultSecureSecrets();
-            string secret = keyVault["HelloWorld"];
+            var duration = new TimeSpan(0, 960, 0);
+            var offset = new TimeSpan(0, 360, 0);
+            CalendarRulePattern pattern = new CalendarRulePattern("pattern", duration, offset);
+            var now = DateTime.Now;
+            var endDateTime = pattern.GetEndDateTime(now, new TimeSpan(16, 120, 0));
         }
     }
     

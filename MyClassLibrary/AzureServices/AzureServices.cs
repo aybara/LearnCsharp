@@ -29,7 +29,7 @@ namespace MyClassLibrary.AzureServices
             secret = new SecretClient(keyVaultUri, new ClientSecretCredential(tenantId, clientId, clientSecret));
         }
         
-        public string EnQueueMessage(string message, string queueName)
+        public void EnQueueMessage(string message, string queueName)
         {
             if (queue == null)
             {
