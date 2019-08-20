@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Math;
 
 namespace MyClassLibrary.Math
 {
     /// <summary>
-    /// Define uma matriz e suas operações.
+    /// Define uma matriz bidimensional e suas operações.
     /// </summary>
     public class Matriz
     {
@@ -24,6 +20,21 @@ namespace MyClassLibrary.Math
             _colunas = colunas;
             this._elementos = new double[linhas, colunas];
         }
+        public Matriz (double [,] elementos) : this()
+        {
+            _elementos = elementos;
+            _linhas = elementos.GetLength(0);
+            _colunas = elementos.GetLength(1);
+        }
+        public double[,] SetElementos
+        {
+            set
+            {
+                _elementos = value;
+                _linhas = value.GetLength(0);
+                _colunas = value.GetLength(1);
+            }
+        }
         /// <summary>
         /// Retorna o elemento na posição dada.
         /// </summary>
@@ -31,13 +42,6 @@ namespace MyClassLibrary.Math
         {
             get { return this._elementos[i, j]; }
             set { this._elementos[i, j] = value; }
-        }
-        /// <summary>
-        /// Retorna a coluna como um array.
-        /// </summary>
-        public double[] this[int j]
-        {
-            get { return RetornaColuna(j); }
         }
         public int Linhas
         {
@@ -84,7 +88,7 @@ namespace MyClassLibrary.Math
             if(this.Linhas == b.Linhas && this.Colunas == b.Colunas)
             {
                 matrizSoma = new Matriz(Linhas, Colunas);
-                InterarMatriz(this, (i, j) => matrizSoma[i, j] = this[i, j] * b[i, j]);
+                InterarMatriz(this, (i, j) => matrizSoma[i, j] = this[i, j] + b[i, j]);
             }
             return matrizSoma;
         }
@@ -104,7 +108,10 @@ namespace MyClassLibrary.Math
             if(Colunas == b.Linhas)
             {
                 multiplicacao = new Matriz(Linhas, b.Colunas);
-                InterarMatriz(this, (i, j) => multiplicacao[i, j] = this[i, j] * b[i, j]);
+                for (int i = 0; i < Linhas; i++)
+                    for (int j = 0; j < b.Colunas; j++)
+                        for (int k = 0; k < Colunas; k++)
+                            multiplicacao[i, j] += this[i, k] * b[k, j];
             }
             return multiplicacao;
         }
@@ -129,23 +136,20 @@ namespace MyClassLibrary.Math
         /// </summary>
         public Matriz Menor(int k, int l)
         {
-            Matriz menor = null;
-            if (Linhas > 1 && Colunas > 1)
-            {
-                menor = new Matriz(Linhas - 1, Colunas - 1);
-                int i, j, p, q;
-                for (i = 0, p = 0; i < Linhas; i++)
-                    if(i != k)
-                    {
-                        for(j = 0, q = 0; j < Colunas; j++)
-                            if(j != l)
-                            {
-                                menor[p, q] = this[i, j];
-                                q++;
-                            }
-                        p++;
-                    }
-            }
+            Matriz menor = new Matriz(Linhas - 1, Colunas - 1);
+            int i, j, p, q;
+            for (i = 0, p = 0; i < Linhas; i++)
+                if(i != k)
+                {
+                    for(j = 0, q = 0; j < Colunas; j++)
+                        if(j != l)
+                        {
+                            menor[p, q] = this[i, j];
+                            q++;
+                        }
+                    p++;
+                }
+
             return menor;
         }
         /// <summary>
@@ -169,6 +173,11 @@ namespace MyClassLibrary.Math
         /// </summary>
         public double Determinante()
         {
+            if (Quadradra() == false)
+                throw new FormatException("Não é um matriz quadrada!");
+            if (Linhas == 1 && Colunas == 1)
+                return this[0, 0];
+
             double det = 0.0;
             for (int j = 0; j < Colunas; j++)
                 det += this[0, j] * Cal(0, j);
@@ -206,6 +215,7 @@ namespace MyClassLibrary.Math
             return !Comparison(a, b);
         }
         #endregion
+
         /// <summary>
         /// Verifica se a matriz é quadrada.
         /// </summary>
@@ -256,6 +266,26 @@ namespace MyClassLibrary.Math
             for (int i = 0; i < this.Linhas; i++)
                 coluna[i] = this[i, j];
             return coluna;
+        }
+        public static implicit operator Matriz(double[,] elementos)
+        {
+            return new Matriz(elementos);
+        }
+        public static bool operator ==(Matriz m, double[,] b)
+        {
+            return Comparison(m, b);
+        }
+        public static bool operator !=(Matriz m, double[,] b)
+        {
+            return !Comparison(m, b);
+        }
+        public static Matriz operator *(Matriz m, int escalar)
+        {
+            return m.MultiplicaEscalar(escalar);
+        }
+        public static Matriz operator *(int escalar, Matriz m)
+        {
+            return m.MultiplicaEscalar(escalar);
         }
     }
 }

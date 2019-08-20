@@ -24,7 +24,6 @@ namespace LearnReflection
         
     }
 
-    public interface
 
     public class Filho : Pai
     {

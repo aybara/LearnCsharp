@@ -92,10 +92,12 @@
     <Compile Include="Cache\MemoryFileCache.cs" />
     <Compile Include="Cache\StockCache.cs" />
     <Compile Include="Cache\StockItem.cs" />
-    <Compile Include="Calendar\CalendarRulePattern.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Math\ExperimentalPoint.cs" />
+    <Compile Include="Math\Function.cs" />
     <Compile Include="Math\Matriz.cs" />
     <Compile Include="Math\MMQ.cs" />
+    <Compile Include="Math\Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queues\BitBetterQueue.cs" />
     <Compile Include="Queues\BlockingCollectionQueue.cs" />

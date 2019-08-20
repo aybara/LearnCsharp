@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libraries", "Libraries\Libr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClassLibrary", "MyClassLibrary\MyClassLibrary.csproj", "{C77AEE9A-88FE-4190-B4AA-B634E4E77290}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwiiterClasses", "TwiiterClasses\TwiiterClasses.csproj", "{2B9DBDEB-15DE-488D-9A5C-A03AEFD6A63D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwiiterClasses", "TwiiterClasses\TwiiterClasses.csproj", "{2B9DBDEB-15DE-488D-9A5C-A03AEFD6A63D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{F323EB0F-172E-4A9C-95A7-529E54BC59C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2B9DBDEB-15DE-488D-9A5C-A03AEFD6A63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B9DBDEB-15DE-488D-9A5C-A03AEFD6A63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B9DBDEB-15DE-488D-9A5C-A03AEFD6A63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F323EB0F-172E-4A9C-95A7-529E54BC59C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F323EB0F-172E-4A9C-95A7-529E54BC59C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F323EB0F-172E-4A9C-95A7-529E54BC59C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F323EB0F-172E-4A9C-95A7-529E54BC59C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
