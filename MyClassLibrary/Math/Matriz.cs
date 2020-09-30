@@ -186,7 +186,7 @@ namespace MyClassLibrary.Math
         /// <summary>
         /// Devolve a Inversa da Matriz. A matriz deve ser quadrada.
         /// </summary>
-        public Matriz Inversa()
+        public Matriz Inverse()
         {
             double det = Determinante();
             if(det != 0.0)

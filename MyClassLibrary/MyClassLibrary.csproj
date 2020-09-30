@@ -92,7 +92,6 @@
     <Compile Include="Cache\MemoryFileCache.cs" />
     <Compile Include="Cache\StockCache.cs" />
     <Compile Include="Cache\StockItem.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Math\ExperimentalPoint.cs" />
     <Compile Include="Math\Function.cs" />
     <Compile Include="Math\Matriz.cs" />

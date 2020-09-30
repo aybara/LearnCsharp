@@ -192,10 +192,10 @@ namespace UnitTests.MathUnitTests
         {
             Matriz inversaMt1 = new double[,] { { -4, 2 }, { 3, -1 } };
             inversaMt1 = inversaMt1.MultiplicaEscalar(0.5);
-            Assert.AreEqual(inversaMt1, mt1.Inversa());
+            Assert.AreEqual(inversaMt1, mt1.Inverse());
             Matriz inversaMt2 = new double[,] { { 2, -6, -4 }, { -1, 3, -2 }, { 1, 5, 2 } };
             inversaMt2 = inversaMt2.MultiplicaEscalar(1.0 / 8);
-            Assert.AreEqual(inversaMt2, mt2.Inversa());
+            Assert.AreEqual(inversaMt2, mt2.Inverse());
         }
         [TestMethod]
         public void SeMatrizEQuadrada()

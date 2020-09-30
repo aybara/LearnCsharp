@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Configuration;
 using System.IO;
 using System.Xml;
@@ -16,7 +17,7 @@ namespace MyClassLibrary
                 XmlDocument document = new XmlDocument();
                 document.Load(FilePath);
 
-                var secrets = document.GetElementsByTagName("secret").GetEnumerator();
+                IEnumerator secrets = document.GetElementsByTagName("secret").GetEnumerator();
                 while (secrets.MoveNext())
                     if (((XmlElement)secrets.Current).Attributes["name"].Value == secretName)
                         return ((XmlElement)secrets.Current).Attributes["value"].Value;
@@ -31,7 +32,7 @@ namespace MyClassLibrary
                 XmlDocument document = new XmlDocument();
                 document.Load(FilePath);
 
-                var secrets = document.GetElementsByTagName("secret").GetEnumerator();
+                IEnumerator secrets = document.GetElementsByTagName("secret").GetEnumerator();
                 while (secrets.MoveNext())
                     if (((XmlElement)secrets.Current).Attributes["name"].Value == secretName)
                         return;

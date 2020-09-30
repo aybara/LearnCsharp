@@ -16,11 +16,11 @@ namespace MyClassLibrary.Math
         private Matriz M;
         private Matriz B;
         public Parameter[] Parameters { get; private set; }
-        public ExperimentalPoint[] Dados { get; }
+        public ExperimentalPoint[] Datas { get; }
         public IFunction[] Functions { get; }
-        public MMQ(ExperimentalPoint[] dados, IFunction[] functions)
+        public MMQ(ExperimentalPoint[] datas, IFunction[] functions)
         {
-            Dados = dados;
+            Datas = datas;
             Functions = functions;
             Parameters = new Parameter[Functions.Length];
         }
@@ -39,23 +39,23 @@ namespace MyClassLibrary.Math
             for (int i = 0; i < Functions.Length; i++)
                 for (int j = i; j < Functions.Length; j++)
                 {
-                    foreach (var point in Dados)
+                    foreach (var point in Datas)
                         M[i, j] += Functions[i].Value(point.X) * Functions[j].Value(point.X) / Pow(point.Error, 2);
                     M[j, i] = M[i, j];
                 }
 
             for (int i = 0; i < Functions.Length; i++)
-                foreach (var point in Dados)
+                foreach (var point in Datas)
                     B[i, 0] += Functions[i].Value(point.X) * point.Y / Pow(point.Error, 2);
         }
         private void ComputeParameters()
         {
-            Matriz inversa = M.Inversa();
-            Matriz cramer = inversa * B;
+            Matriz inverse = M.Inverse();
+            Matriz cramer = inverse * B;
             for(int i = 0; i < Parameters.Length; i++)
             {
                 Parameters[i].Value = cramer[0, i];
-                Parameters[i].Error = inversa[i, i];
+                Parameters[i].Error = inverse[i, i];
             }
         }
     }
